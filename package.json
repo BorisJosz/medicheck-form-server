@@ -1,0 +1,26 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "server to get and post check information to mail",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BorisJosz/medicheck-form-server.git"
+  },
+  "keywords": [
+    "medicheck",
+    "server"
+  ],
+  "author": "Boris Josz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BorisJosz/medicheck-form-server/issues"
+  },
+  "homepage": "https://github.com/BorisJosz/medicheck-form-server#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
