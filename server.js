@@ -24,6 +24,7 @@ app.post('/', function (req, res) {
         commentMedicheck: check.commentMedicheck,
         startDate: check.startDate,
         endDate: check.endDate,
+        checked: check.checked,
         }
     )
     res.send('Got a POST request')
