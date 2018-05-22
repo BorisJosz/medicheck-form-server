@@ -21,7 +21,9 @@ app.post('/', function (req, res) {
         employeePhoneNumber: check.employeePhoneNumber,
         employeeAddress: check.employeeAddress,
         commentDoctor: check.commentDoctor,
-        commentMedicheck: check.commentMedicheck
+        commentMedicheck: check.commentMedicheck,
+        startDate: check.startDate,
+        endDate: check.endDate,
         }
     )
     res.send('Got a POST request')
