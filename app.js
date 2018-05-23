@@ -13,6 +13,6 @@ app.get('/', (req, res) => res.send('BS server'))
  
 app.listen(3000, () => console.log('Server listening on port 3000!'))
 
-app.post('/', function (req, res) {
+app.post('/', (req, res) => {
     console.log(req.body)
 })
