@@ -26,6 +26,7 @@ app.post('/', function (req, res) {
         endDate: check.endDate,
         employeeLanguage: check.employeeLanguage,
         optimizedCheck: check.optimizedCheck,
+        atHome: check.atHome,
         }
     )
     res.send('Got a POST request')
