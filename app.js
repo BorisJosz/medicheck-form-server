@@ -22,6 +22,25 @@ app.post('/', (req, res) => {
         <li> Name : ${req.body.contactPersonName} </li>
         <li> Email : ${req.body.contactEmail} </li>
     </ul>
+    <h4> Employee to be checked </h4>
+    <ul>
+        <li> Name : ${req.body.employeeFirstName} "" ${req.body.employeeLastName} </li>
+        <li> Phone Number : ${req.body.employeePhoneNumber} </li>
+        <li> Street Address : ${req.body.employeeAddress} </li>
+        <li> Employee speaks ${req.body.employeeLanguage} </li>
+    </ul>
+    <h4> Check details </h4>
+    <ul>
+        <li> Optimized : ${req.body.optimizedCheck} </li>
+        <li> At Home : ${req.body.atHome} </li>
+    </ul>
+    <h4> Incapacity Period </h4>
+    <p> Incapacity starts from ${req.body.startDate} and ends ${req.body.endDate} </p>
+    <h4> Additional comments </h4>
+    <p> For the Doctor : </p>
+    <p> ${req.body.commentDoctor} </p>
+    <p> For Medicheck : </p>
+    <p> ${req.body.commentMedicheck} </p>
     `
 
     // create reusable transporter object using the default SMTP transport
@@ -48,7 +67,7 @@ app.post('/', (req, res) => {
     // setup email data with unicode symbols
     let mailOptions = {
         from: '"Boris Josz 👻" <Boris.Josz@gmail.com>', 
-        to: 'Boris.Josz@medicheck.io',
+        to: 'Boris@medicheck.io',
         subject: 'TESTING ✔',
         text: 'Did this work?',
         html: output
