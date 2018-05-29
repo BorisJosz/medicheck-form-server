@@ -15,46 +15,51 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.listen(3000, () => console.log('Server listening on port 3000!'))
 app.get('/', (req, res) => res.send('Hello you'))
 
-// // DATA UPLOAD
-// app.post('/', upload.array('medicalCertificate', 12), function (req, res, next) {
-//     console.log(req.files)
-//     // req.files has the images uploaded form medicalCertificate
-//     console.log(req.body)
+// DATA UPLOAD
+// app.post('/', upload.any(), function (req, res, next) {
+//     const payload = JSON.parse(req.body.payload)
+
+//     // console.log(req.files)
+//     // // req.files has the images uploaded form medicalCertificate
+//     // console.log(req.body)
+//     console.log(req.body.payload)
+//     console.log(payload)
+//     // console.log(req.body.payload.contactPersonName)
+//     // console.log(req.body.payload[0].contactPersonName)
 //     // req.body has the text fields + toggle + datepicker data
-//   })
+// })
 
 // SENDING MAIL
-app.post('/', (req, res) => {
+app.post('/', upload.any(), (req, res, next) => {
+    const payload = JSON.parse(req.body.payload)
     const output = `
     <p> You have a new Check scheduled </p>
     <h3> Check details </h3>
     <h4> Contact person details </h4>
     <ul>
-        <li> Name : ${req.body.contactPersonName} </li>
-        <li> Email : ${req.body.contactEmail} </li>
+        <li> Name : ${payload.contactPersonName} </li>
+        <li> Email : ${payload.contactEmail} </li>
     </ul>
     <h4> Employee to be checked </h4>
     <ul>
-        <li> Name : ${req.body.employeeFirstName}  ${req.body.employeeLastName} </li>
-        <li> Phone Number : ${req.body.employeePhoneNumber} </li>
-        <li> Street Address : ${req.body.employeeAddress} </li>
-        <li> Employee speaks ${req.body.employeeLanguage} </li>
+        <li> Name : ${payload.employeeFirstName}  ${payload.employeeLastName} </li>
+        <li> Phone Number : ${payload.employeePhoneNumber} </li>
+        <li> Street Address : ${payload.employeeAddress} </li>
+        <li> Employee speaks ${payload.employeeLanguage} </li>
     </ul>
     <h4> Check details </h4>
     <ul>
-        <li> Optimized : ${req.body.optimizedCheck} </li>
-        <li> At Home : ${req.body.atHome} </li>
+        <li> Optimized : ${payload.optimizedCheck} </li>
+        <li> At Home : ${payload.atHome} </li>
     </ul>
     <h4> Incapacity Period </h4>
-    <p> Incapacity starts from ${req.body.startDate} and ends ${req.body.endDate} </p>
-    <br></br>
-    
-    <img src=${req.files}>  </img>
+    <p> Incapacity starts from ${payload.startDate} and ends ${payload.endDate} </p>
+    </br>
     <h4> Additional comments </h4>
     <p> For the Doctor : </p>
-    <p> ${req.body.commentDoctor} </p>
+    <p> ${payload.commentDoctor} </p>
     <p> For Medicheck : </p>
-    <p> ${req.body.commentMedicheck} </p>
+    <p> ${payload.commentMedicheck} </p>
     `
 
     // create reusable transporter object using the default SMTP transport
@@ -95,5 +100,4 @@ app.post('/', (req, res) => {
         console.log('Message sent: %s', info.messageId);
         console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
     });
-
 })
