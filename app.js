@@ -37,12 +37,15 @@ app.post('/', upload.any(), (req, res, next) => {
     <h3> Check details </h3>
     <h4> Contact person details </h4>
     <ul>
-        <li> Name : ${payload.contactPersonName} </li>
+        <li> First Name : ${payload.contactPersonFirstName} </li>
+        <li> Last Name : ${payload.contactPersonLastName} </li>
         <li> Email : ${payload.contactEmail} </li>
+        <li> Phone Number : ${payload.contactPhoneNumber} </li>
     </ul>
     <h4> Employee to be checked </h4>
     <ul>
-        <li> Name : ${payload.employeeFirstName}  ${payload.employeeLastName} </li>
+        <li> First Name : ${payload.employeeFirstName} </li>
+        <li> Last Name : ${payload.employeeLastName} </li>
         <li> Phone Number : ${payload.employeePhoneNumber} </li>
         <li> Street Address : ${payload.employeeAddress} </li>
         <li> Employee speaks ${payload.employeeLanguage} </li>
@@ -54,7 +57,6 @@ app.post('/', upload.any(), (req, res, next) => {
     </ul>
     <h4> Incapacity Period </h4>
     <p> Incapacity starts from ${payload.startDate} and ends ${payload.endDate} </p>
-    </br>
     <h4> Additional comments </h4>
     <p> For the Doctor : </p>
     <p> ${payload.commentDoctor} </p>
@@ -62,7 +64,7 @@ app.post('/', upload.any(), (req, res, next) => {
     <p> ${payload.commentMedicheck} </p>
     `
 
-    // create reusable transporter object using the default SMTP transport
+    // mail settings
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -89,6 +91,7 @@ app.post('/', upload.any(), (req, res, next) => {
         to: 'Boris@medicheck.io',
         subject: 'TESTING ✔',
         text: 'Did this work?',
+        attachments: req.files,
         html: output
     };
 
