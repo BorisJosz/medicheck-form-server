@@ -48,6 +48,7 @@ app.post('/', upload.any(), (req, res, next) => {
         <li> Last Name : ${payload.employeeLastName} </li>
         <li> Phone Number : ${payload.employeePhoneNumber} </li>
         <li> Street Address : ${payload.employeeAddress} </li>
+        <li> Employee Position : ${payload.employeePosition} </li>
         <li> Employee speaks ${payload.employeeLanguage} </li>
     </ul>
     <h4> Check details </h4>
