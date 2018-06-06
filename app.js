@@ -41,6 +41,7 @@ app.post('/', upload.any(), (req, res, next) => {
         <li> Last Name : ${payload.contactPersonLastName} </li>
         <li> Email : ${payload.contactEmail} </li>
         <li> Phone Number : ${payload.contactPhoneNumber} </li>
+        <li> Company name : ${payload.companyName} </li>
     </ul>
     <h4> Employee to be checked </h4>
     <ul>
